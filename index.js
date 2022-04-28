@@ -7,15 +7,16 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-app.get("/", function(req, res){
-  res.send("Olá mundo")
+app.get("/", async function(req, res){
+  var usuarios = await usuario.findAll();
+  res.json(usuarios);
+});
+
+app.post('/', async function(req, res){
+  var resultado = await usuario.create();
+  res.json(resultado);
 });
 
 app.listen(3000, function(){
   console.log("O servidor está bruto demais")
-});
-
-app.post('/', function(req, res){
-  var resultado = usuario.create();
-  res.json(resultado);
 });
