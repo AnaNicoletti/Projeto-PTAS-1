@@ -8,8 +8,8 @@ app.use(express.urlencoded({
 }));
 
 app.get("/", async function(req, res){
-  var usuarios = await usuario.findAll();
-  res.json(usuarios);
+  var resultado = await usuario.findAll();
+  res.json(resultado);
 });
 
 app.post('/', async function(req, res){
@@ -38,6 +38,11 @@ var resultado = await usuario.destroy(
         id: req.params.id,
       },
     });
+  res.json(resultado);
+});
+
+app.get('/:id', async function(req, res){
+  var resultado = await usuario.findByPk(req.params.id);
   res.json(resultado);
 });
 
