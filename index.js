@@ -31,6 +31,16 @@ app.put('/:id', async function(req, res){
   res.json(resultado);
 });
 
+app.delete('/:id', async function(req, res){
+var resultado = await usuario.destroy(
+    {
+      where: {
+        id: req.params.id,
+      },
+    });
+  res.json(resultado);
+});
+
 app.listen(3000, function(){
   console.log("O servidor está bruto demais")
 });
